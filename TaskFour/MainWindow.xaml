@@ -1,0 +1,15 @@
+﻿<Window x:Class="TaskFour.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TaskFour"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <DataGrid x:Name="studentsDataGrid" AutoGenerateColumns="True" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="250" Width="480"/>
+        <Button Content="Add Student" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="30" Margin="10,270,0,0" Click="AddStudent_Click"/>
+        <Button Content="Update Student" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="30" Margin="140,270,0,0" Click="UpdateStudent_Click"/>
+        <Button Content="Delete Student" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="30" Margin="270,270,0,0" Click="DeleteStudent_Click"/>
+    </Grid>
+</Window>
