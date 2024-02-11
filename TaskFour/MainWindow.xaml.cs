@@ -84,7 +84,7 @@ namespace TaskFour
 
                 // Перезагрузка данных и обновление DataGrid
                 LoadStudents();
-            }
+            } 
         }
     }
 }

@@ -5,11 +5,137 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaskFour"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Журнал" Height="350" Width="500" Background="#212121" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Window.Resources>
+
+        <!--Градиенты цветов-->
+        <LinearGradientBrush x:Key="Brush3">
+            <GradientStop Color="#FFC4D0" Offset="0" />
+            <GradientStop Color="#FBE8E7" Offset="1" />
+        </LinearGradientBrush>
+        <LinearGradientBrush x:Key="Brush2">
+            <GradientStop Color="#930077" Offset="0" />
+            <GradientStop Color="#E61c5D" Offset="1" />
+        </LinearGradientBrush>
+        <LinearGradientBrush x:Key="Brush1">
+            <GradientStop Color="#D72323" Offset="0" />
+            <GradientStop Color="#F73859" Offset="1" />
+        </LinearGradientBrush>
+
+        <!--Стиль обычных кнопок-->
+        <Style x:Key="AllButtons" TargetType="Button">
+            <!--Триггеры-->
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Gray" />
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="White" />
+                    <Setter Property="Foreground" Value="Black" />
+                </Trigger>
+            </Style.Triggers>
+
+            <!--Начальные заданные функции-->
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Background" Value="#323232"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Foreground" Value="White" />
+
+            <!--Шаблон-->
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="10" Background="{TemplateBinding Background}" BorderThickness="0">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                            </ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!--Конец стиля обычных кнопок-->
+
+
+        <!--Стиль результативных кнопок-->
+        <Style x:Key="ResultButton" TargetType="Button">
+            <!--Триггеры-->
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Gray"/>
+                </Trigger>
+
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#323232"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+
+            <!--Начальные заданные функции-->
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Foreground" Value="Black" />
+
+            <!--Шаблон-->
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="10" Background="{TemplateBinding Background}" BorderThickness="0">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                            </ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="DataGrid" TargetType="DataGrid">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Grid.Row" Value="0"/>
+            <Setter Property="Grid.Column" Value="0" />
+            <Setter Property="Grid.ColumnSpan" Value="3"/>
+            <Setter Property="Grid.RowSpan" Value="3"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="white"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Width" Value="480"/>
+            <Setter Property="Height" Value="250"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="RowBackground" Value="Transparent"/>
+            <Setter Property="AlternatingRowBackground" Value="#323232"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="17"/>
+            <Setter Property="HorizontalGridLinesBrush" Value="Black"/>
+        </Style>
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Width" Value="Auto"/>
+            <Setter Property="BorderThickness" Value="10"/>
+        </Style>
+
+    </Window.Resources>
     <Grid>
-        <DataGrid x:Name="studentsDataGrid" AutoGenerateColumns="True" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="250" Width="480"/>
-        <Button Content="Add Student" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="30" Margin="10,270,0,0" Click="AddStudent_Click"/>
-        <Button Content="Update Student" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="30" Margin="140,270,0,0" Click="UpdateStudent_Click"/>
-        <Button Content="Delete Student" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="30" Margin="270,270,0,0" Click="DeleteStudent_Click"/>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <DataGrid Style="{StaticResource DataGrid}" x:Name="studentsDataGrid" AutoGenerateColumns="True" />
+        <Button Style="{StaticResource AllButtons}" Grid.Column="0" Grid.Row="3" Content="Добавить" Click="AddStudent_Click"/>
+        <Button Style="{StaticResource AllButtons}" Content="Обновить" Grid.Column="1" Grid.Row="3" Click="UpdateStudent_Click"/>
+        <Button Style="{StaticResource ResultButton}" Content="Удалить" Grid.Column="3" Grid.Row="3" Click="DeleteStudent_Click"/>
     </Grid>
 </Window>
